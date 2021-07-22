@@ -9,7 +9,7 @@ echo == create and install CA ==
 mkcert -install
 
 echo == create k8s cluster ==
-minikube start --profile $profile --driver hyperkit --container-runtime containerd --cni calico --cpus 4 --memory 4g --disk-size 40g --addons ingress,ingress-dns
+minikube start --profile $profile --driver docker --container-runtime containerd --cni calico --cpus 4 --memory 4g --disk-size 40g --addons ingress,ingress-dns
 minikube profile $profile
 
 echo == add DNS resolver ==
@@ -37,7 +37,7 @@ echo ' =='
 
 echo == install CA in siembol namespace ==
 kubectl create namespace $profile
-kubectl create -n $profile secret tls cacerts --cert=$HOME/Library/ApplicationSupport/mkcert/rootCA.pem --key=$HOME/Library/ApplicationSupport/mkcert/rootCA-key.pem
+kubectl create -n $profile secret tls cacerts --cert=$HOME/.local/share/mkcert/rootCA.pem --key=$HOME/.local/share/mkcert/rootCA.pem-key.pem
 kubectl apply -f - <<EOF
 apiVersion: cert-manager.io/v1
 kind: Issuer

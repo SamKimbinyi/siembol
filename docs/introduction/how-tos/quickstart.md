@@ -5,12 +5,17 @@ Local Install
 ----------------
 
 ### 1. Run minikube.sh
-
+Windows
 ```bash
 deployment/helm-k8s/quickstart_install/sh-scripts/minikube.sh
 ```
-or
+Linux
 ```bash
+deployment/helm-k8s/quickstart_install/ps-scripts/minikube.ps1
+```
+WSL2
+```wsl2
+sudo apt install -y conntrack
 deployment/helm-k8s/quickstart_install/ps-scripts/minikube.ps1
 ```
 

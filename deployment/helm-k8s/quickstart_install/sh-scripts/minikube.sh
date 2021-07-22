@@ -30,7 +30,7 @@ helm install cert-manager jetstack/cert-manager --namespace cert-manager --versi
 printf '== wait for cert-manager to be up'
 for deployment in cert-manager cert-manager-cainjector cert-manager-webhook
 do
-  while ! [ "$(kubectl get deployment $deployment --namespace cert-manager -o jsonpath='{.status.readyReplicas}')" == "1" ]; do printf .; sleep 1; done
+  while [ "$(kubectl get deployment $deployment --namespace cert-manager -o jsonpath='{.status.readyReplicas}')" != "1" ]; do printf .; sleep 1; done
 done
 echo ' =='
 
